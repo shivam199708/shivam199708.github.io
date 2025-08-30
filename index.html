@@ -4,153 +4,185 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shivam Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
+    /* Basic Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.6;
       background-color: #f4f4f9;
       color: #333;
     }
-    a {
-      color: #4CAF50;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
 
+    a { text-decoration: none; }
+
+    /* Hero Section */
     header {
-      background-color: #4CAF50;
-      color: white;
-      padding: 60px 20px;
       text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 3em;
-    }
-    header p {
-      font-size: 1.2em;
-      margin-top: 10px;
+      padding: 80px 20px;
+      background: #4CAF50;
+      color: white;
     }
 
+    header img {
+      width: 150px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+
+    header h1 { font-size: 2.5em; margin-bottom: 10px; }
+    header p { font-size: 1.2em; margin-bottom: 20px; }
+
+    .resume-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: white;
+      color: #4CAF50;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: 0.3s;
+      margin-bottom: 20px;
+    }
+
+    .resume-button:hover {
+      background-color: #e0e0e0;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 1em;
+    }
+
+    .social-links a { color: white; text-decoration: underline; transition: 0.3s; }
+    .social-links a:hover { color: #e0e0e0; }
+
+    /* Sections */
     section {
       max-width: 900px;
       margin: 40px auto;
       padding: 0 20px;
     }
 
-    h2 {
+    section h2 {
+      font-size: 2em;
       color: #4CAF50;
-      border-bottom: 2px solid #4CAF50;
-      padding-bottom: 5px;
       margin-bottom: 20px;
+      text-align: center;
     }
 
+    /* Projects & Skills Cards */
     .projects, .skills {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
+      justify-content: center;
     }
 
-    .project, .skill {
+    .project, .skill-category {
       background-color: white;
       padding: 20px;
       border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       flex: 1 1 250px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: 0.3s;
     }
 
-    .skills .skill {
-      text-align: center;
-      font-weight: bold;
+    .project:hover, .skill-category:hover {
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      transform: translateY(-3px);
+    }
+
+    .project h3, .skill-category h3 { color: #4CAF50; margin-bottom: 10px; }
+    .project p, .skill-category p { margin: 0; }
+
+    /* Contact Section */
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
       font-size: 1em;
     }
 
-    footer {
-      text-align: center;
-      padding: 30px 20px;
-      background-color: #eee;
-      margin-top: 40px;
-      font-size: 0.9em;
-    }
+    .contact-links a { color: #4CAF50; text-decoration: underline; transition: 0.3s; }
+    .contact-links a:hover { color: #333; }
   </style>
 </head>
+
 <body>
 
-<header style="text-align:center; padding:80px 20px; background:#4CAF50; color:white;">
-  <!-- Profile Image -->
-  <img src="images/shivam.jpg" alt="Shivam" style="width:150px; border-radius:50%; margin-bottom:20px;">
+  <!-- Hero Section -->
+  <header>
+    <img src="images/shivam.jpg" alt="Shivam">
+    <h1>Shivam</h1>
+    <p>Cloud & Machine Learning Solutions | GCP, Python, SQL, AI Deployment</p>
+    <a href="ML_Github_Website.pdf" target="_blank" class="resume-button">Download Resume</a>
+    <div class="social-links">
+      <a href="mailto:ashivam1997@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/shiv0810/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/shivam199708" target="_blank">GitHub</a>
+      <a href="https://x.com/cvamtiwar_i" target="_blank">Twitter</a>
+    </div>
+  </header>
 
-  <!-- Name & Title -->
-  <h1>Shivam</h1>
-  <p>Cloud & Machine Learning Solutions | GCP, Python, SQL, AI Deployment</p>
-
-  <!-- Resume Button -->
-  <a href="ML_Github_Website.pdf" target="_blank" style="
-      display:inline-block;
-      padding:10px 20px;
-      background-color:white;
-      color:#4CAF50;
-      border-radius:5px;
-      text-decoration:none;
-      font-weight:bold;
-      margin-top:20px;
-  ">Download Resume</a>
-
-  <!-- Contact Links in one line -->
-  <div style="margin-top:20px; font-size:1em; display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
-    <a href="mailto:ashivam1997@gmail.com" style="color:white; text-decoration:underline;">Email</a>
-    <a href="https://www.linkedin.com/in/shiv0810/" target="_blank" style="color:white; text-decoration:underline;">LinkedIn</a>
-    <a href="https://github.com/shivam199708" target="_blank" style="color:white; text-decoration:underline;">GitHub</a>
-    <a href="https://x.com/cvamtiwar_i" target="_blank" style="color:white; text-decoration:underline;">Twitter</a>
-  </div>
-</header>
-
-
+  <!-- About Me Section -->
   <section>
     <h2>About Me</h2>
-    <p>Hello! I'm Shivam, a passionate Machine Learning Engineer with experience in building AI chatbots, analyzing large datasets and help stakeholder drive the business.</p>
+    <p>Hello! I’m Shivam, a passionate Machine Learning Engineer with experience in building AI chatbots, analyzing large datasets, and designing end-to-end solutions. I enjoy transforming data into actionable insights and building web projects that are both functional and visually appealing.</p>
   </section>
-  
+
+  <!-- Resume Section -->
   <section>
-    <h2>Skills</h2>
-    <div class="skills">
-      <div class="skill">Python</div>
-      <div class="skill">SQL & BigQuery</div>
-      <div class="skill">PyTorch / Machine Learning</div>
-      <div class="skill">GCP (Google Cloud Platform)/Vertex AI</div>
-      <div class="skill">Vector DB/Google Embeddings</div>
-      <div class="skill">Data Visualization</div>
-      <div class="skill">Git & GitHub</div>
-      <div class="skill">HTML </div>
-    </div>
+    <h2>Resume</h2>
+    <a href="ML_Github_Website.pdf" target="_blank" class="resume-button">Download Resume</a>
   </section>
-  
+
+  <!-- Projects Section -->
   <section>
     <h2>Projects</h2>
     <div class="projects">
       <div class="project">
-        <h3><a href="https://github.com/shivam199708/Chat-Agent" target="_blank">Chat Assistance for Live Agents</a></h3>
-      <p>AI-powered chatbot system to assist customer support agents by summarizing conversations and suggesting responses in real-time.</p>
+        <h3><a href="https://github.com/shivam199708/chat-assistance-live-agents" target="_blank">Chat Assistance for Live Agents</a></h3>
+        <p>AI-powered chatbot system to assist customer support agents by summarizing conversations and suggesting responses in real-time.</p>
       </div>
       <div class="project">
-        <h3><a href="https://github.com/shivam199708/Predictive-Modeling-for-Retail-Purchase-Behavior-at-Walmart" target="_blank" >Modeling for Retail Purchase Behavior</a></h3>
-        <p>Using machine learning techniques, how accurately can we predict purchase amounts based on demographic and transactional attributes?</p>
+        <h3><a href="https://github.com/shivam199708/predictive-retail-model" target="_blank">Predictive Modeling for Retail Purchase Behavior</a></h3>
+        <p>Using machine learning techniques, predicts purchase amounts based on demographic and transactional attributes.</p>
       </div>
       <div class="project">
-        <h3><a href="https://github.com/shivam199708/churn-Prediction-GCP" target="_blank" >Churn Prediction ML Model</a></h3>
+        <h3><a href="https://github.com/shivam199708/churn-prediction-ml" target="_blank">Churn Prediction ML Model</a></h3>
         <p>Machine learning model predicting customer churn using Python, SQL, and BigQuery, optimizing marketing campaigns.</p>
       </div>
     </div>
   </section>
 
+  <!-- Skills Section -->
+  <section>
+    <h2>Skills</h2>
+    <div class="skills">
+      <div class="skill-category">
+        <h3>Programming</h3>
+        <p>Python, PyTorch / HTML </p>
+      </div>
+      <div class="skill-category">
+        <h3>Database</h3>
+        <p>SQL, BigQuery</p>
+      </div>
+      <div class="skill-category">
+        <h3>Tools & Others</h3>
+        <p>Git & GitHub, Data Visualization</p>
+      </div>
+    </div>
+  </section>
 
-
-  <footer>
-    <p>© 2025 Shivam.</p>
-  </footer>
 
 </body>
 </html>
