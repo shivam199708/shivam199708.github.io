@@ -6,53 +6,74 @@
   <title>Shivam Portfolio</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
-      line-height: 1.6;
-      background-color: #f5f5f5;
+      background-color: #f4f4f9;
       color: #333;
     }
+    a {
+      color: #4CAF50;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
     header {
       background-color: #4CAF50;
       color: white;
-      padding: 40px 0;
+      padding: 60px 20px;
       text-align: center;
     }
     header h1 {
       margin: 0;
-      font-size: 2.5em;
+      font-size: 3em;
     }
     header p {
       font-size: 1.2em;
+      margin-top: 10px;
     }
+
     section {
-      max-width: 800px;
+      max-width: 900px;
       margin: 40px auto;
       padding: 0 20px;
     }
+
     h2 {
       color: #4CAF50;
       border-bottom: 2px solid #4CAF50;
       padding-bottom: 5px;
+      margin-bottom: 20px;
     }
-    .projects {
+
+    .projects, .skills {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
     }
-    .project {
+
+    .project, .skill {
       background-color: white;
       padding: 20px;
-      border-radius: 8px;
+      border-radius: 10px;
       flex: 1 1 250px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
+
+    .skills .skill {
+      text-align: center;
+      font-weight: bold;
+      font-size: 1em;
+    }
+
     footer {
       text-align: center;
-      padding: 20px;
+      padding: 30px 20px;
       background-color: #eee;
       margin-top: 40px;
+      font-size: 0.9em;
     }
   </style>
 </head>
@@ -60,12 +81,12 @@
 
   <header>
     <h1>Shivam</h1>
-    <p>Machine Learning Engineer | Data Enthusiast | Aspiring Full-Stack Developer</p>
+    <p>Cloud & Machine Learning Solutions | GCP, Python, SQL, AI Deployment</p>
   </header>
 
   <section>
     <h2>About Me</h2>
-    <p>Hello! I’m Shivam, a passionate Machine Learning Engineer with experience in building AI chatbots and working with large-scale data pipelines. I love turning data into insights and creating web projects that are both functional and visually appealing.</p>
+    <p>Hello! I'm Shivam, a passionate Machine Learning Engineer with experience in building AI chatbots, analyzing large datasets and help stakeholder drive the business.</p>
   </section>
 
   <section>
@@ -76,8 +97,8 @@
         <p>AI-powered chatbot system to assist customer support agents by summarizing conversations and suggesting responses in real-time.</p>
       </div>
       <div class="project">
-        <h3>DIY Security GTM Strategy</h3>
-        <p>Consulting-style go-to-market strategy for ADT’s DIY product launch, including competitive analysis and channel recommendations.</p>
+        <h3>Predictive Modeling for Retail Purchase Behavior</h3>
+        <p>Using machine learning techniques, how accurately can we predict purchase amounts based on demographic and transactional attributes?</p>
       </div>
       <div class="project">
         <h3>Churn Prediction ML Model</h3>
@@ -86,8 +107,29 @@
     </div>
   </section>
 
+  <section>
+    <h2>Skills</h2>
+    <div class="skills">
+      <div class="skill">Python</div>
+      <div class="skill">SQL & BigQuery</div>
+      <div class="skill">PyTorch / Machine Learning</div>
+      <div class="skill">GCP (Google Cloud Platform)/Vertex AI</div>
+      <div class="skill">Vector DB/Google Embeddings</div>
+      <div class="skill">Data Visualization</div>
+      <div class="skill">Git & GitHub</div>
+      <div class="skill">HTML </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:ashivam1997@gmail.com">ashivam1997@gmail.com</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/shiv0810/" target="_blank">linkedin.com/in/shivam199708</a></p>
+    <p>GitHub: <a href="https://github.com/shivam199708" target="_blank">github.com/shivam199708</a></p>
+  </section>
+
   <footer>
-    <p>Connect with me on <a href="https://www.linkedin.com/in/shivam199708" target="_blank">LinkedIn</a> | GitHub: <a href="https://github.com/shivam199708" target="_blank">shivam199708</a></p>
+    <p>© 2025 Shivam. Built with ❤️ using GitHub Pages.</p>
   </footer>
 
 </body>
