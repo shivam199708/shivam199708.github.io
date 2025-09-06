@@ -8,76 +8,61 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
+  <!-- FontAwesome for icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
   <style>
-    /* Basic Reset */
+    /* Reset */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Roboto', sans-serif;
-      line-height: 1.6;
-      background-color: #f4f4f9;
-      color: #333;
-    }
+    body { font-family: 'Roboto', sans-serif; line-height: 1.6; background-color: #f4f4f9; color: #333; scroll-behavior: smooth;}
     a { text-decoration: none; }
 
-    /* Hero Section Centered */
+    /* Navigation */
+    nav {
+      position: fixed;
+      width: 100%;
+      background: rgba(0,0,0,0.8);
+      color: white;
+      display: flex;
+      justify-content: center;
+      z-index: 1000;
+    }
+    nav ul { display: flex; gap: 20px; list-style: none; padding: 15px 0; }
+    nav ul li a { color: white; font-weight: bold; transition: 0.3s; }
+    nav ul li a:hover { color: #4CAF50; }
+
+    /* Hero Section */
     header {
+      height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      padding: 100px 20px;
-      background: url('images/hero.png') no-repeat center center;
-      background-size: cover;
-      color: #ffffff;
-      position: relative;
+      align-items: center;
       text-align: center;
+      background: url('images/hero.png') no-repeat center center/cover;
+      position: relative;
+      color: white;
     }
     header::before {
       content: "";
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6));
-      z-index: 1;
+      top:0; left:0;
+      width:100%; height:100%;
+      background: rgba(0,0,0,0.6);
+      z-index:1;
     }
-
-    .hero-content, .hero-image {
-      position: relative;
-      z-index: 2;
-      opacity: 0;
-      animation: fadeIn 1.5s forwards;
-    }
-
-    /* Hero Image */
-    .hero-image img {
+    .hero-content { position: relative; z-index: 2; }
+    .hero-content img {
       width: 180px;
-      max-width: 100%;
-      border-radius: 15px;
-      border: 3px solid #ffffff;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      margin-bottom: 20px;
       box-shadow: 0 6px 25px rgba(0,0,0,0.5);
-      margin-bottom: 20px;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: transform 0.3s;
     }
-    .hero-image img:hover { 
-      transform: scale(1.05);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-    }
-
-    /* Hero Text */
-    .hero-content h1 {
-      font-size: 3em;
-      margin-bottom: 10px;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
-      animation-delay: 0.6s;
-    }
-    .hero-content p {
-      font-size: 1.2em;
-      margin-bottom: 20px;
-      max-width: 500px;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
-      animation-delay: 0.9s;
-    }
-
+    .hero-content img:hover { transform: scale(1.05); }
+    .hero-content h1 { font-size: 3em; margin-bottom: 10px; }
+    .hero-content p { font-size: 1.2em; margin-bottom: 20px; max-width: 500px; }
     .resume-button {
       display: inline-block;
       padding: 12px 25px;
@@ -87,50 +72,15 @@
       font-weight: bold;
       margin-bottom: 20px;
       transition: 0.3s;
-      animation-delay: 1.2s;
     }
     .resume-button:hover { background-color: #45a049; }
 
-    .social-links {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-      font-size: 1em;
-      animation-delay: 1.5s;
-    }
-    .social-links a { 
-      color: #ffffff; 
-      text-decoration: underline; 
-      transition: 0.3s; 
-    }
-    .social-links a:hover { color: #cce6ff; }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     /* Sections */
-    section {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-    section h2 {
-      font-size: 2em;
-      color: #4CAF50;
-      margin-bottom: 20px;
-      text-align: center;
-    }
+    section { max-width: 900px; margin: 60px auto; padding: 0 20px; }
+    section h2 { font-size: 2em; color: #4CAF50; margin-bottom: 20px; text-align: center; }
 
-    /* Projects & Skills Cards */
-    .projects, .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
+    /* Projects & Skills */
+    .projects, .skills { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
     .project, .skill-category {
       background-color: white;
       padding: 20px;
@@ -140,7 +90,7 @@
       transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
       cursor: pointer;
     }
-    .project:hover, .skill-category:hover {
+    .project:hover, .skill-category:hover { 
       box-shadow: 0 12px 25px rgba(0,0,0,0.2);
       transform: translateY(-5px);
       background-color: #f0fff4;
@@ -148,62 +98,75 @@
     .project h3, .skill-category h3 { color: #4CAF50; margin-bottom: 10px; }
     .project p, .skill-category p { margin: 0; }
 
+    /* Contact */
+    .contact-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; font-size: 1em; }
+    .contact-links a { color: #4CAF50; text-decoration: underline; transition: 0.3s; }
+    .contact-links a:hover { color: #333; }
+
     /* Responsive */
     @media (max-width: 600px) {
       .hero-content h1 { font-size: 2em; }
       .hero-content p { font-size: 1em; }
-      .hero-image img { width: 140px; border-radius: 12px; }
+      .hero-content img { width: 140px; }
+      nav ul { flex-direction: column; gap: 10px; }
     }
   </style>
 </head>
-
 <body>
+
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
   <!-- Hero Section -->
   <header>
-    <div class="hero-image">
-      <img src="images/shivam.jpg" alt="Shivam">
-    </div>
     <div class="hero-content">
+      <img src="images/shivam.jpg" alt="Shivam">
       <h1>Shivam</h1>
       <p>Cloud & Machine Learning Solutions | GCP, Python, SQL, AI Deployment</p>
       <a href="ML_Github_Website.pdf" target="_blank" class="resume-button">Download Resume</a>
       <div class="social-links">
-        <a href="mailto:ashivam1997@gmail.com">Email</a>
-        <a href="https://www.linkedin.com/in/shiv0810/" target="_blank">LinkedIn</a>
-        <a href="https://github.com/shivam199708" target="_blank">GitHub</a>
-        <a href="https://x.com/cvamtiwar_i" target="_blank">Twitter</a>
+        <a href="mailto:ashivam1997@gmail.com"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.linkedin.com/in/shiv0810/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/shivam199708" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://x.com/cvamtiwar_i" target="_blank"><i class="fab fa-twitter"></i></a>
       </div>
     </div>
   </header>
 
-  <!-- About Me Section -->
-  <section>
+  <!-- About Me -->
+  <section id="about">
     <h2>About Me</h2>
-    <p>Hi, I’m Shivam, a Machine Learning Engineer with a strong background in ML modeling and applied AI. I specialize in building intelligent chatbots, designing and training models on large datasets, and developing end-to-end solutions that bridge data insights with real-world applications. I’m passionate about transforming complex data into actionable outcomes and creating projects that combine technical depth with practical impact. When I’m not working with data, you’ll probably find me watching a good thriller movie — always looking for the next plot twist as exciting as solving a tough ML problem.</p>
+    <p>Hi, I’m Shivam, a Machine Learning Engineer with a strong background in ML modeling and applied AI. I specialize in building intelligent chatbots, designing and training models on large datasets, and developing end-to-end solutions that bridge data insights with real-world applications. I’m passionate about transforming complex data into actionable outcomes. When I’m not working with data, you’ll probably find me watching a good thriller movie — always looking for the next plot twist as exciting as solving a tough ML problem.</p>
   </section>
 
-  <!-- Projects Section -->
-  <section>
+  <!-- Projects -->
+  <section id="projects">
     <h2>Projects</h2>
     <div class="projects">
       <div class="project">
         <h3><a href="https://github.com/shivam199708/Chat-Agent" target="_blank">Chat Assistance for Live Agents</a></h3>
-        <p>An open-source chatbot that uses Sentence-BERT embeddings and semantic search to answer Ubuntu-related queries with context-aware accuracy. Built with Streamlit, FAISS, and GitHub Actions, deployed on Streamlit Cloud for real-time access.</p>
+        <p>Open-source chatbot using Sentence-BERT embeddings and semantic search. Built with Streamlit, FAISS, and GitHub Actions, deployed on Streamlit Cloud.</p>
       </div>
       <div class="project">
-        <h3><a href="https://github.com/shivam199708/Predicting-Sleep-Qaulity-using-Machine-learning-" target="_blank">Predictive Modeling for Retail Purchase Behavior</a></h3>
-        <p>Designed a predictive solution that uncovered purchasing patterns to improve demand forecasting and optimize inventory management. Recommended enhancements to further reduce stockouts, minimize surplus, and support stronger revenue growth.</p>
+        <h3><a href="https://github.com/shivam199708/Predicting-Sleep-Qaulity-using-Machine-learning-" target="_blank">Predictive Modeling for Retail</a></h3>
+        <p>Predictive solution for demand forecasting and inventory optimization. Suggested enhancements to reduce stockouts and support revenue growth.</p>
       </div>
       <div class="project">
         <h3><a href="https://github.com/shivam199708/churn-Prediction-GCP" target="_blank">Churn Prediction ML Model</a></h3>
-        <p>Built a predictive solution to identify at-risk customers, enabling targeted retention strategies and more effective marketing campaigns to reduce churn and increase customer lifetime value.</p>
+        <p>Identifies at-risk customers for targeted retention strategies, improving marketing efficiency and customer lifetime value.</p>
       </div>
     </div>
   </section>
 
-  <!-- Skills Section -->
-  <section>
+  <!-- Skills -->
+  <section id="skills">
     <h2>Skills</h2>
     <div class="skills">
       <div class="skill-category">
@@ -226,6 +189,17 @@
         <h3>Tools & Workflow</h3>
         <p>Git & GitHub, CI/CD, ETL</p>
       </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact-links">
+      <a href="mailto:ashivam1997@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/shiv0810/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/shivam199708" target="_blank">GitHub</a>
+      <a href="https://x.com/cvamtiwar_i" target="_blank">Twitter</a>
     </div>
   </section>
 
