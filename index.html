@@ -21,15 +21,17 @@
 
     a { text-decoration: none; }
 
-    /* Hero Section with Background Image and Overlay */
+    /* Hero Section */
     header {
-      text-align: center;
-      padding: 120px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap-reverse;
+      padding: 80px 20px;
       background: url('images/hero.png') no-repeat center center;
       background-size: cover;
       color: white;
       position: relative;
-      overflow: hidden;
     }
 
     header::before {
@@ -41,24 +43,44 @@
       z-index: 1;
     }
 
-    header img,
-    header h1,
-    header p,
-    header .resume-button,
-    header .social-links {
+    .hero-content, .hero-image {
       position: relative;
       z-index: 2;
       opacity: 0;
       animation: fadeIn 1.5s forwards;
     }
 
-    header img { width: 150px; border-radius: 50%; margin-bottom: 20px; animation-delay: 0.3s; }
-    header h1 { font-size: 2.5em; margin-bottom: 10px; animation-delay: 0.6s; }
-    header p { font-size: 1.2em; margin-bottom: 20px; animation-delay: 0.9s; }
+    /* Image styling */
+    .hero-image img {
+      width: 200px;
+      max-width: 100%;
+      border-radius: 15px;
+      border: 3px solid #fff;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      margin: 0 40px 20px 0;
+      transition: transform 0.3s;
+    }
+
+    .hero-image img:hover { transform: scale(1.05); }
+    .hero-image { animation-delay: 0.3s; }
+
+    /* Text content styling */
+    .hero-content h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+      animation-delay: 0.6s;
+    }
+
+    .hero-content p {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      max-width: 500px;
+      animation-delay: 0.9s;
+    }
 
     .resume-button {
       display: inline-block;
-      padding: 10px 20px;
+      padding: 12px 25px;
       background-color: white;
       color: #4CAF50;
       border-radius: 5px;
@@ -72,7 +94,6 @@
 
     .social-links {
       display: flex;
-      justify-content: center;
       gap: 20px;
       flex-wrap: wrap;
       font-size: 1em;
@@ -138,11 +159,17 @@
     .contact-links a { color: #4CAF50; text-decoration: underline; transition: 0.3s; }
     .contact-links a:hover { color: #333; }
 
-    /* Responsive Hero Text */
+    /* Responsive Hero */
+    @media (max-width: 900px) {
+      header { flex-direction: column; padding: 60px 20px; text-align: center; }
+      .hero-image { margin: 0 0 20px 0; }
+      .hero-content h1 { font-size: 2.5em; }
+      .hero-content p { font-size: 1em; }
+    }
+
     @media (max-width: 600px) {
-      header h1 { font-size: 2em; }
-      header p { font-size: 1em; }
-      header img { width: 120px; }
+      .hero-image img { width: 140px; border-radius: 12px; }
+      .hero-content h1 { font-size: 2em; }
     }
   </style>
 </head>
@@ -151,24 +178,26 @@
 
   <!-- Hero Section -->
   <header>
-    <img src="images/shivam.jpg" alt="Shivam">
-    <h1>Shivam</h1>
-    <p>Cloud & Machine Learning Solutions | GCP, Python, SQL, AI Deployment</p>
-    <a href="ML_Github_Website.pdf" target="_blank" class="resume-button">Download Resume</a>
-    <div class="social-links">
-      <a href="mailto:ashivam1997@gmail.com">Email</a>
-      <a href="https://www.linkedin.com/in/shiv0810/" target="_blank">LinkedIn</a>
-      <a href="https://github.com/shivam199708" target="_blank">GitHub</a>
-      <a href="https://x.com/cvamtiwar_i" target="_blank">Twitter</a>
+    <div class="hero-image">
+      <img src="images/shivam.jpg" alt="Shivam">
+    </div>
+    <div class="hero-content">
+      <h1>Shivam</h1>
+      <p>Cloud & Machine Learning Solutions | GCP, Python, SQL, AI Deployment</p>
+      <a href="ML_Github_Website.pdf" target="_blank" class="resume-button">Download Resume</a>
+      <div class="social-links">
+        <a href="mailto:ashivam1997@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/shiv0810/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/shivam199708" target="_blank">GitHub</a>
+        <a href="https://x.com/cvamtiwar_i" target="_blank">Twitter</a>
+      </div>
     </div>
   </header>
 
   <!-- About Me Section -->
   <section>
     <h2>About Me</h2>
-    <p>Hi, I’m Shivam a Machine Learning Engineer with a strong background in ML modeling and applied AI. I specialize in building intelligent chatbots, designing and training models on large datasets, and developing end-to-end solutions that bridge data insights with real-world applications. I’m passionate about transforming complex data into actionable outcomes and creating projects that combine technical depth with practical impact.
-    When I’m not working with data, you’ll probably find me watching a good thriller movie always looking for the next plot twist as exciting as solving a tough ML problem.
-</p>
+    <p>Hi, I’m Shivam, a Machine Learning Engineer with a strong background in ML modeling and applied AI. I specialize in building intelligent chatbots, designing and training models on large datasets, and developing end-to-end solutions that bridge data insights with real-world applications. I’m passionate about transforming complex data into actionable outcomes and creating projects that combine technical depth with practical impact. When I’m not working with data, you’ll probably find me watching a good thriller movie — always looking for the next plot twist as exciting as solving a tough ML problem.</p>
   </section>
 
   <!-- Projects Section -->
@@ -177,7 +206,7 @@
     <div class="projects">
       <div class="project">
         <h3><a href="https://github.com/shivam199708/Chat-Agent" target="_blank">Chat Assistance for Live Agents</a></h3>
-        <p>An open-source chatbot that uses Sentence-BERT embeddings and semantic search to answer Ubuntu-related queries with context-aware accuracy. Built with Streamlit, FAISS, and GitHub Actions, and deployed on Streamlit Cloud for real-time access.</p>
+        <p>An open-source chatbot that uses Sentence-BERT embeddings and semantic search to answer Ubuntu-related queries with context-aware accuracy. Built with Streamlit, FAISS, and GitHub Actions, deployed on Streamlit Cloud for real-time access.</p>
       </div>
       <div class="project">
         <h3><a href="https://github.com/shivam199708/Predicting-Sleep-Qaulity-using-Machine-learning-" target="_blank">Predictive Modeling for Retail Purchase Behavior</a></h3>
@@ -192,33 +221,30 @@
 
   <!-- Skills Section -->
   <section>
-  <h2>Skills</h2>
-  <div class="skills">
-    <div class="skill-category">
-      <h3>Programming & ML</h3>
-      <p>Python, PyTorch, Machine Learning, NLP, Regression, Predictive Models, Feature Engineering</p>
+    <h2>Skills</h2>
+    <div class="skills">
+      <div class="skill-category">
+        <h3>Programming & ML</h3>
+        <p>Python, PyTorch, Machine Learning, NLP, Regression, Predictive Models, Feature Engineering</p>
+      </div>
+      <div class="skill-category">
+        <h3>Data & Analytics</h3>
+        <p>SQL, BigQuery, Pandas, Excel, Statistics, Mathematics, Data Modeling, Data Analytics</p>
+      </div>
+      <div class="skill-category">
+        <h3>Visualization & BI</h3>
+        <p>Power BI, Tableau</p>
+      </div>
+      <div class="skill-category">
+        <h3>Cloud & Big Data</h3>
+        <p>GCP, Vertex AI, Big Data, MLOps</p>
+      </div>
+      <div class="skill-category">
+        <h3>Tools & Workflow</h3>
+        <p>Git & GitHub, CI/CD, ETL</p>
+      </div>
     </div>
-    <div class="skill-category">
-      <h3>Data & Analytics</h3>
-      <p>SQL, BigQuery, Pandas, Excel, Statistics, Mathematics, Data Modeling, Data Analytics</p>
-    </div>
-    <div class="skill-category">
-      <h3>Visualization & BI</h3>
-      <p>Power BI, Tableau</p>
-    </div>
-    <div class="skill-category">
-      <h3>Cloud & Big Data</h3>
-      <p>GCP, Vertex AI, Big Data, MLOps</p>
-    </div>
-    <div class="skill-category">
-      <h3>Tools & Workflow</h3>
-      <p>Git & GitHub, CI/CD, ETL</p>
-    </div>
-  </div>
-</section>
-
-
-
+  </section>
 
 </body>
 </html>
