@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Shivam Tiwari</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome for icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <style>
+    /* CSS Variables for consistent theming */
+    :root {
+      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --text-primary: #2d3748;
+      --text-secondary: #4a5568;
+      --text-light: #718096;
+      --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      --shadow-heavy: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Reset and Base Styles */
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    
+    body { 
+      font-family: 'Inter', sans-serif; 
+      line-height: 1.6; 
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      color: var(--text-primary);
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary-gradient);
+      border-radius: 4px;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--glass-border);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+    
+    nav.scrolled {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: var(--shadow-light);
+    }
+    
+    nav ul { 
+      display: flex; 
+      gap: 40px; 
+      list-style: none; 
+      padding: 20px 0; 
+      justify-content: center;
+    }
+    
+    nav ul li a { 
+      color: var(--text-primary); 
+      font-weight: 500; 
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 50%;
+      background: var(--primary-gradient);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+    
+    nav ul li a:hover::after,
+    nav ul li a.active::after {
+      width: 100%;
+    }
+    
+    nav ul li a:hover,
+    nav ul li a.active { 
+      color: #667eea;
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .contact-hero {
+      background: var(--primary-gradient);
+      color: white;
+      padding: 120px 20px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.3;
+    }
+
+    .contact-hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .contact-hero p {
+      font-size: 1.3rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Contact Content */
+    .contact-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 20px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 80px;
+    }
+
+    /* Contact Form */
+    .contact-form {
+      background: white;
+      padding: 50px;
+      border-radius: 20px;
+      box-shadow: var(--shadow-light);
+    }
+
+    .contact-form h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 15px 20px;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      background: #f8fafc;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #667eea;
+      background: white;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      background: var(--primary-gradient);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    /* Contact Info */
+    .contact-info {
+      background: white;
+      padding: 50px;
+      border-radius: 20px;
+      box-shadow: var(--shadow-light);
+    }
+
+    .contact-info h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: #f8fafc;
+      border-radius: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .contact-item:hover {
+      transform: translateX(10px);
+      box-shadow: var(--shadow-light);
+    }
+
+    .contact-item i {
+      font-size: 1.5rem;
+      color: #667eea;
+      width: 30px;
+      text-align: center;
+    }
+
+    .contact-item-content h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: var(--text-primary);
+    }
+
+    .contact-item-content p {
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    .contact-item-content a {
+      color: #667eea;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact-item-content a:hover {
+      color: var(--text-primary);
+    }
+
+    /* Social Links */
+    .social-section {
+      background: white;
+      padding: 50px;
+      border-radius: 20px;
+      box-shadow: var(--shadow-light);
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .social-section h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .social-section p {
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+      font-size: 1.1rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background: var(--primary-gradient);
+      color: white;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: var(--shadow-medium);
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      background: white;
+      padding: 50px;
+      border-radius: 20px;
+      box-shadow: var(--shadow-light);
+    }
+
+    .faq-section h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 40px;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .faq-item {
+      margin-bottom: 20px;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 20px;
+      background: #f8fafc;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .faq-question:hover {
+      background: #e2e8f0;
+    }
+
+    .faq-question h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 0;
+    }
+
+    .faq-question i {
+      color: #667eea;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-answer.active {
+      padding: 20px;
+      max-height: 200px;
+    }
+
+    .faq-answer p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .contact-hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .contact-hero p {
+        font-size: 1.1rem;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .contact-form,
+      .contact-info,
+      .social-section,
+      .faq-section {
+        padding: 30px;
+      }
+
+      .social-links {
+        gap: 20px;
+      }
+
+      nav ul {
+        gap: 25px;
+        padding: 15px 0;
+      }
+
+      nav ul li a {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contact-hero {
+        padding: 100px 20px 60px;
+      }
+
+      .contact-hero h1 {
+        font-size: 2rem;
+      }
+
+      .contact-container {
+        padding: 60px 20px;
+      }
+
+      .contact-form,
+      .contact-info,
+      .social-section,
+      .faq-section {
+        padding: 20px;
+      }
+
+      .social-links {
+        gap: 15px;
+      }
+
+      .social-link {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Contact Hero -->
+  <section class="contact-hero">
+    <h1>Get In Touch</h1>
+    <p>Let's discuss your next ML project or just say hello!</p>
+  </section>
+
+  <!-- Contact Content -->
+  <div class="contact-container">
+    <!-- Contact Form & Info -->
+    <div class="contact-grid">
+      <!-- Contact Form -->
+      <div class="contact-form">
+        <h2>Send Me a Message</h2>
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="contact-info">
+        <h2>Contact Information</h2>
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <div class="contact-item-content">
+            <h3>Email</h3>
+            <p><a href="mailto:ashivam1997@gmail.com">ashivam1997@gmail.com</a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fab fa-linkedin"></i>
+          <div class="contact-item-content">
+            <h3>LinkedIn</h3>
+            <p><a href="https://www.linkedin.com/in/shiv0810/" target="_blank">linkedin.com/in/shiv0810</a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fab fa-github"></i>
+          <div class="contact-item-content">
+            <h3>GitHub</h3>
+            <p><a href="https://github.com/shivam199708" target="_blank">github.com/shivam199708</a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fab fa-twitter"></i>
+          <div class="contact-item-content">
+            <h3>Twitter</h3>
+            <p><a href="https://x.com/cvamtiwar_i" target="_blank">@cvamtiwar_i</a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="contact-item-content">
+            <h3>Location</h3>
+            <p>Available for remote work worldwide</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-clock"></i>
+          <div class="contact-item-content">
+            <h3>Response Time</h3>
+            <p>Usually within 24 hours</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social Links -->
+    <div class="social-section">
+      <h2>Connect With Me</h2>
+      <p>Follow me on social media for updates on my latest projects and insights</p>
+      <div class="social-links">
+        <a href="mailto:ashivam1997@gmail.com" class="social-link" title="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/shiv0810/" target="_blank" class="social-link" title="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://github.com/shivam199708" target="_blank" class="social-link" title="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://x.com/cvamtiwar_i" target="_blank" class="social-link" title="Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <h3>What services do you offer?</h3>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>I specialize in machine learning model development, AI chatbot creation, data analysis, cloud deployment on GCP, and end-to-end ML solutions. I also provide consulting for data science projects and ML strategy.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <h3>How long does a typical project take?</h3>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Project timelines vary based on complexity. Simple data analysis projects can take 1-2 weeks, while comprehensive ML solutions with deployment can take 4-8 weeks. I always provide detailed timelines during our initial consultation.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <h3>Do you work with specific industries?</h3>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>I have experience across various industries including retail, e-commerce, customer service, and business intelligence. My solutions are adaptable to different sectors and can be customized to meet specific industry requirements.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(this)">
+          <h3>What's your preferred communication method?</h3>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>I'm flexible with communication methods. Email is great for detailed discussions, while video calls work well for brainstorming sessions. I'm also active on LinkedIn and Twitter for quick updates and professional networking.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Contact form handling
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form data
+      const formData = new FormData(this);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const subject = formData.get('subject');
+      const message = formData.get('message');
+      
+      // Create mailto link
+      const mailtoLink = `mailto:ashivam1997@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+      
+      // Open email client
+      window.location.href = mailtoLink;
+      
+      // Show success message
+      alert('Thank you for your message! Your email client should open with the message pre-filled.');
+      
+      // Reset form
+      this.reset();
+    });
+
+    // FAQ toggle functionality
+    function toggleFAQ(element) {
+      const answer = element.nextElementSibling;
+      const icon = element.querySelector('i');
+      
+      if (answer.classList.contains('active')) {
+        answer.classList.remove('active');
+        icon.style.transform = 'rotate(0deg)';
+      } else {
+        // Close all other FAQs
+        document.querySelectorAll('.faq-answer.active').forEach(item => {
+          item.classList.remove('active');
+        });
+        document.querySelectorAll('.faq-question i').forEach(item => {
+          item.style.transform = 'rotate(0deg)';
+        });
+        
+        // Open current FAQ
+        answer.classList.add('active');
+        icon.style.transform = 'rotate(180deg)';
+      }
+    }
+
+    // Add ripple effect to buttons
+    document.querySelectorAll('.submit-btn, .social-link').forEach(button => {
+      button.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.classList.add('ripple');
+        
+        this.appendChild(ripple);
+        
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+    });
+
+    // Add CSS for ripple effect
+    const style = document.createElement('style');
+    style.textContent = `
+      .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.6);
+        transform: scale(0);
+        animation: ripple-animation 0.6s linear;
+        pointer-events: none;
+      }
+      
+      @keyframes ripple-animation {
+        to {
+          transform: scale(4);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>

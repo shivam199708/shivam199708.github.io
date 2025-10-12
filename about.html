@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Shivam Tiwari</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome for icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <style>
+    /* CSS Variables for consistent theming */
+    :root {
+      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --text-primary: #2d3748;
+      --text-secondary: #4a5568;
+      --text-light: #718096;
+      --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      --shadow-heavy: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Reset and Base Styles */
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    
+    body { 
+      font-family: 'Inter', sans-serif; 
+      line-height: 1.6; 
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      color: var(--text-primary);
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--primary-gradient);
+      border-radius: 4px;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--glass-border);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+    
+    nav.scrolled {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: var(--shadow-light);
+    }
+    
+    nav ul { 
+      display: flex; 
+      gap: 40px; 
+      list-style: none; 
+      padding: 20px 0; 
+      justify-content: center;
+    }
+    
+    nav ul li a { 
+      color: var(--text-primary); 
+      font-weight: 500; 
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 50%;
+      background: var(--primary-gradient);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+    
+    nav ul li a:hover::after,
+    nav ul li a.active::after {
+      width: 100%;
+    }
+    
+    nav ul li a:hover,
+    nav ul li a.active { 
+      color: #667eea;
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .about-hero {
+      background: var(--primary-gradient);
+      color: white;
+      padding: 120px 20px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.3;
+    }
+
+    .about-hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .about-hero p {
+      font-size: 1.3rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* About Content */
+    .about-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 20px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 80px;
+      align-items: center;
+    }
+
+    .about-image {
+      position: relative;
+    }
+
+    .about-image img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 20px;
+      box-shadow: var(--shadow-heavy);
+      transition: all 0.5s ease;
+    }
+
+    .about-image img:hover {
+      transform: scale(1.05);
+    }
+
+    .about-image::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      right: -20px;
+      bottom: -20px;
+      background: var(--accent-gradient);
+      border-radius: 30px;
+      opacity: 0.3;
+      z-index: -1;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(1deg); }
+    }
+
+    .about-content h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .about-content p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 25px;
+    }
+
+    .about-content .highlight {
+      background: rgba(102, 126, 234, 0.1);
+      padding: 20px;
+      border-radius: 15px;
+      border-left: 4px solid #667eea;
+      margin: 30px 0;
+    }
+
+    .about-content .highlight p {
+      margin: 0;
+      font-style: italic;
+      color: var(--text-primary);
+    }
+
+    /* Skills Section */
+    .skills-section {
+      background: white;
+      border-radius: 20px;
+      padding: 60px;
+      box-shadow: var(--shadow-light);
+      margin-bottom: 60px;
+    }
+
+    .skills-section h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 50px;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .skill-category {
+      background: #f8fafc;
+      padding: 30px;
+      border-radius: 15px;
+      border: 1px solid #e2e8f0;
+      transition: all 0.3s ease;
+    }
+
+    .skill-category:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .skill-category h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .skill-category h3 i {
+      color: #667eea;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-tag {
+      background: var(--primary-gradient);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    /* Experience Timeline */
+    .timeline-section {
+      background: white;
+      border-radius: 20px;
+      padding: 60px;
+      box-shadow: var(--shadow-light);
+      margin-bottom: 60px;
+    }
+
+    .timeline-section h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 50px;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--primary-gradient);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 40px;
+      padding-left: 40px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: 5px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--primary-gradient);
+      border: 3px solid white;
+      box-shadow: var(--shadow-light);
+    }
+
+    .timeline-content {
+      background: #f8fafc;
+      padding: 25px;
+      border-radius: 15px;
+      border-left: 4px solid #667eea;
+    }
+
+    .timeline-content h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+
+    .timeline-content .timeline-date {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+    }
+
+    .timeline-content p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Personal Interests */
+    .interests-section {
+      background: white;
+      border-radius: 20px;
+      padding: 60px;
+      box-shadow: var(--shadow-light);
+    }
+
+    .interests-section h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 50px;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .interest-item {
+      text-align: center;
+      padding: 30px;
+      background: #f8fafc;
+      border-radius: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .interest-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .interest-item i {
+      font-size: 3rem;
+      color: #667eea;
+      margin-bottom: 20px;
+    }
+
+    .interest-item h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: var(--text-primary);
+    }
+
+    .interest-item p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .about-hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .about-hero p {
+        font-size: 1.1rem;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .about-content h2 {
+        font-size: 2rem;
+      }
+
+      .skills-section,
+      .timeline-section,
+      .interests-section {
+        padding: 40px 30px;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .interests-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+
+      nav ul {
+        gap: 25px;
+        padding: 15px 0;
+      }
+
+      nav ul li a {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .about-hero {
+        padding: 100px 20px 60px;
+      }
+
+      .about-hero h1 {
+        font-size: 2rem;
+      }
+
+      .about-container {
+        padding: 60px 20px;
+      }
+
+      .skills-section,
+      .timeline-section,
+      .interests-section {
+        padding: 30px 20px;
+      }
+
+      .timeline {
+        padding-left: 20px;
+      }
+
+      .timeline::before {
+        left: 10px;
+      }
+
+      .timeline-item {
+        padding-left: 30px;
+      }
+
+      .timeline-item::before {
+        left: -6px;
+        width: 12px;
+        height: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- About Hero -->
+  <section class="about-hero">
+    <h1>About Me</h1>
+    <p>Passionate about transforming data into intelligent solutions</p>
+  </section>
+
+  <!-- About Content -->
+  <div class="about-container">
+    <!-- Personal Story -->
+    <div class="about-grid">
+      <div class="about-image">
+        <img src="images/shivam.jpg" alt="Shivam Tiwari">
+      </div>
+      <div class="about-content">
+        <h2>My Story</h2>
+        <p>
+          Hi, I'm Shivam Tiwari, a passionate Machine Learning Engineer with a deep fascination for transforming complex data into actionable insights. My journey in the world of AI and ML began with a curiosity about how machines can learn and make decisions, and it has evolved into a career dedicated to building intelligent solutions that solve real-world problems.
+        </p>
+        <p>
+          I specialize in building intelligent chatbots, designing and training models on large datasets, and developing end-to-end solutions that bridge data insights with real-world applications. My expertise spans across machine learning, cloud computing, and data analytics, with a particular focus on Google Cloud Platform and Python-based solutions.
+        </p>
+        <div class="highlight">
+          <p>
+            "I believe that the future belongs to those who can harness the power of data and AI to create meaningful impact. Every dataset tells a story, and my mission is to help businesses understand and act on those stories."
+          </p>
+        </div>
+        <p>
+          When I'm not diving deep into data or building ML models, you'll probably find me watching a good thriller movie — always looking for the next plot twist as exciting as solving a tough ML problem. I'm also passionate about sharing knowledge and helping others in the tech community grow.
+        </p>
+      </div>
+    </div>
+
+    <!-- Skills Section -->
+    <div class="skills-section">
+      <h2>Technical Expertise</h2>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3><i class="fas fa-code"></i> Programming & ML</h3>
+          <div class="skill-list">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">PyTorch</span>
+            <span class="skill-tag">Machine Learning</span>
+            <span class="skill-tag">NLP</span>
+            <span class="skill-tag">Regression</span>
+            <span class="skill-tag">Predictive Models</span>
+            <span class="skill-tag">Feature Engineering</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3><i class="fas fa-database"></i> Data & Analytics</h3>
+          <div class="skill-list">
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">BigQuery</span>
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">Excel</span>
+            <span class="skill-tag">Statistics</span>
+            <span class="skill-tag">Mathematics</span>
+            <span class="skill-tag">Data Modeling</span>
+            <span class="skill-tag">Data Analytics</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3><i class="fas fa-chart-bar"></i> Visualization & BI</h3>
+          <div class="skill-list">
+            <span class="skill-tag">Power BI</span>
+            <span class="skill-tag">Tableau</span>
+            <span class="skill-tag">Matplotlib</span>
+            <span class="skill-tag">Seaborn</span>
+            <span class="skill-tag">Plotly</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3><i class="fas fa-cloud"></i> Cloud & Big Data</h3>
+          <div class="skill-list">
+            <span class="skill-tag">GCP</span>
+            <span class="skill-tag">Vertex AI</span>
+            <span class="skill-tag">Big Data</span>
+            <span class="skill-tag">MLOps</span>
+            <span class="skill-tag">Cloud Storage</span>
+            <span class="skill-tag">AutoML</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3><i class="fas fa-tools"></i> Tools & Workflow</h3>
+          <div class="skill-list">
+            <span class="skill-tag">Git & GitHub</span>
+            <span class="skill-tag">CI/CD</span>
+            <span class="skill-tag">ETL</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Streamlit</span>
+            <span class="skill-tag">Jupyter</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience Timeline -->
+    <div class="timeline-section">
+      <h2>Professional Journey</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>Machine Learning Engineer</h3>
+            <div class="timeline-date">2023 - Present</div>
+            <p>
+              Developing end-to-end ML solutions, building intelligent chatbots, and implementing predictive models for business intelligence. Specializing in NLP, cloud deployment, and MLOps practices.
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>Data Science Projects</h3>
+            <div class="timeline-date">2022 - 2023</div>
+            <p>
+              Worked on various data science projects including churn prediction, demand forecasting, and customer analytics. Gained expertise in Python, SQL, and cloud platforms.
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>Learning & Development</h3>
+            <div class="timeline-date">2020 - 2022</div>
+            <p>
+              Intensive learning phase focusing on machine learning fundamentals, programming in Python, and understanding cloud computing platforms. Built foundational projects and contributed to open-source initiatives.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Personal Interests -->
+    <div class="interests-section">
+      <h2>Beyond Work</h2>
+      <div class="interests-grid">
+        <div class="interest-item">
+          <i class="fas fa-film"></i>
+          <h3>Movies & Entertainment</h3>
+          <p>Passionate about thriller movies and always looking for the next plot twist as exciting as solving a tough ML problem.</p>
+        </div>
+        <div class="interest-item">
+          <i class="fas fa-book"></i>
+          <h3>Continuous Learning</h3>
+          <p>Always exploring new technologies, reading research papers, and staying updated with the latest trends in AI and ML.</p>
+        </div>
+        <div class="interest-item">
+          <i class="fas fa-users"></i>
+          <h3>Community Building</h3>
+          <p>Active in tech communities, sharing knowledge through blogs, and helping others grow in their data science journey.</p>
+        </div>
+        <div class="interest-item">
+          <i class="fas fa-coffee"></i>
+          <h3>Coffee & Conversations</h3>
+          <p>Love discussing ideas over coffee, whether it's about the latest ML breakthrough or the plot of a great movie.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Add animation to timeline items
+    document.querySelectorAll('.timeline-item').forEach(item => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(30px)';
+      item.style.transition = 'all 0.6s ease';
+      observer.observe(item);
+    });
+
+    // Add animation to skill categories
+    document.querySelectorAll('.skill-category').forEach(category => {
+      category.style.opacity = '0';
+      category.style.transform = 'translateY(30px)';
+      category.style.transition = 'all 0.6s ease';
+      observer.observe(category);
+    });
+
+    // Add animation to interest items
+    document.querySelectorAll('.interest-item').forEach(item => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(30px)';
+      item.style.transition = 'all 0.6s ease';
+      observer.observe(item);
+    });
+  </script>
+</body>
+</html>
