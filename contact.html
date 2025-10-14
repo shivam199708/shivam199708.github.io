@@ -336,88 +336,6 @@
       align-items: center;
     }
 
-    .social-platform-logos {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-    }
-
-    .platform-logo {
-      width: 60px;
-      height: 60px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-      transition: all 0.3s ease;
-      box-shadow: var(--shadow-light);
-    }
-
-    .platform-logo.linkedin {
-      background: #0077b5;
-      color: white;
-    }
-
-    .platform-logo.github {
-      background: #333;
-      color: white;
-    }
-
-    .platform-logo.twitter {
-      background: #1da1f2;
-      color: white;
-    }
-
-    .platform-logo.email {
-      background: #ea4335;
-      color: white;
-    }
-
-    .platform-logo.phone {
-      background: #34a853;
-      color: white;
-    }
-
-    .platform-logo:hover {
-      transform: translateY(-5px) scale(1.1);
-      box-shadow: var(--shadow-medium);
-    }
-
-    /* Fallback for icons if FontAwesome doesn't load */
-    .platform-logo i::before {
-      content: attr(data-icon);
-    }
-
-    .platform-logo.linkedin i::before {
-      content: "in";
-      font-family: Arial, sans-serif;
-      font-weight: bold;
-    }
-
-    .platform-logo.github i::before {
-      content: "GH";
-      font-family: Arial, sans-serif;
-      font-weight: bold;
-    }
-
-    .platform-logo.twitter i::before {
-      content: "T";
-      font-family: Arial, sans-serif;
-      font-weight: bold;
-    }
-
-    .platform-logo.email i::before {
-      content: "@";
-      font-family: Arial, sans-serif;
-      font-weight: bold;
-    }
-
-    .platform-logo.phone i::before {
-      content: "📞";
-      font-family: Arial, sans-serif;
-    }
-
     .social-links {
       display: flex;
       justify-content: center;
@@ -536,14 +454,14 @@
         padding: 30px;
       }
 
-      .social-platform-logos {
-        gap: 15px;
+      .social-links {
+        gap: 20px;
       }
 
-      .platform-logo {
+      .social-link {
         width: 50px;
         height: 50px;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
       }
 
       nav ul {
@@ -682,20 +600,20 @@
       <h2>Connect With Me</h2>
       <p>Follow me on social media for updates on my latest projects and insights</p>
       <div class="social-content">
-        <div class="social-platform-logos">
-          <a href="mailto:ashivam1997@gmail.com" class="platform-logo email" title="Email">
+        <div class="social-links">
+          <a href="mailto:ashivam1997@gmail.com" class="social-link" title="Email">
             <i class="fas fa-envelope"></i>
           </a>
-          <a href="tel:+15612996593" class="platform-logo phone" title="Phone">
+          <a href="tel:+15612996593" class="social-link" title="Phone">
             <i class="fas fa-phone"></i>
           </a>
-          <a href="https://www.linkedin.com/in/shiv0810/" target="_blank" class="platform-logo linkedin" title="LinkedIn">
+          <a href="https://www.linkedin.com/in/shiv0810/" target="_blank" class="social-link" title="LinkedIn">
             <i class="fab fa-linkedin"></i>
           </a>
-          <a href="https://github.com/shivam199708" target="_blank" class="platform-logo github" title="GitHub">
+          <a href="https://github.com/shivam199708" target="_blank" class="social-link" title="GitHub">
             <i class="fab fa-github"></i>
           </a>
-          <a href="https://x.com/cvamtiwar_i" target="_blank" class="platform-logo twitter" title="Twitter">
+          <a href="https://x.com/cvamtiwar_i" target="_blank" class="social-link" title="Twitter">
             <i class="fab fa-twitter"></i>
           </a>
         </div>
