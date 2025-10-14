@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- FontAwesome for icons -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
     /* CSS Variables for consistent theming */
@@ -383,6 +383,40 @@
     .platform-logo:hover {
       transform: translateY(-5px) scale(1.1);
       box-shadow: var(--shadow-medium);
+    }
+
+    /* Fallback for icons if FontAwesome doesn't load */
+    .platform-logo i::before {
+      content: attr(data-icon);
+    }
+
+    .platform-logo.linkedin i::before {
+      content: "in";
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+    }
+
+    .platform-logo.github i::before {
+      content: "GH";
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+    }
+
+    .platform-logo.twitter i::before {
+      content: "T";
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+    }
+
+    .platform-logo.email i::before {
+      content: "@";
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+    }
+
+    .platform-logo.phone i::before {
+      content: "📞";
+      font-family: Arial, sans-serif;
     }
 
     .social-links {
