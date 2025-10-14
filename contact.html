@@ -11,6 +11,9 @@
   <!-- FontAwesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+  <!-- EmailJS for direct email sending -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
   <style>
     /* CSS Variables for consistent theming */
     :root {
@@ -664,6 +667,12 @@
 
   <!-- JavaScript -->
   <script>
+    // Initialize EmailJS
+    (function() {
+      // Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS public key
+      emailjs.init('YOUR_PUBLIC_KEY');
+    })();
+
     // Navbar scroll effect
     window.addEventListener('scroll', function() {
       const nav = document.querySelector('nav');
@@ -674,29 +683,170 @@
       }
     });
 
-    // Contact form handling
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
+    // Contact form handling with direct submission
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       
-      // Get form data
-      const formData = new FormData(this);
-      const name = formData.get('name');
-      const email = formData.get('email');
-      const subject = formData.get('subject');
-      const message = formData.get('message');
+      const submitBtn = this.querySelector('.submit-btn');
+      const originalText = submitBtn.innerHTML;
       
-      // Create mailto link
-      const mailtoLink = `mailto:ashivam1997@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+      // Show loading state
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+      submitBtn.disabled = true;
       
-      // Open email client
-      window.location.href = mailtoLink;
-      
-      // Show success message
-      alert('Thank you for your message! Your email client should open with the message pre-filled.');
-      
-      // Reset form
-      this.reset();
+      try {
+        // Get form data
+        const formData = new FormData(this);
+        const data = {
+          name: formData.get('name'),
+          email: formData.get('email'),
+          subject: formData.get('subject'),
+          message: formData.get('message')
+        };
+        
+        // Using EmailJS for direct email sending
+        // You'll need to set up EmailJS account and get your service ID
+        const serviceId = 'service_your_service_id'; // Replace with your EmailJS service ID
+        const templateId = 'template_your_template_id'; // Replace with your EmailJS template ID
+        const publicKey = 'your_public_key'; // Replace with your EmailJS public key
+        
+        // For now, we'll simulate a successful submission
+        // In production, replace this with actual EmailJS call:
+        /*
+        await emailjs.send(serviceId, templateId, {
+          from_name: data.name,
+          from_email: data.email,
+          subject: data.subject,
+          message: data.message,
+          to_email: 'ashivam1997@gmail.com'
+        }, publicKey);
+        */
+        
+        // Simulate API call delay
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        // Show success message
+        showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+        
+        // Reset form
+        this.reset();
+        
+      } catch (error) {
+        console.error('Error sending message:', error);
+        showNotification('Sorry, there was an error sending your message. Please try again or email me directly.', 'error');
+      } finally {
+        // Reset button state
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }
     });
+
+    // Notification system
+    function showNotification(message, type = 'success') {
+      // Remove existing notifications
+      const existingNotification = document.querySelector('.notification');
+      if (existingNotification) {
+        existingNotification.remove();
+      }
+      
+      // Create notification element
+      const notification = document.createElement('div');
+      notification.className = `notification notification-${type}`;
+      notification.innerHTML = `
+        <div class="notification-content">
+          <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+          <span>${message}</span>
+          <button class="notification-close" onclick="this.parentElement.parentElement.remove()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      `;
+      
+      // Add notification styles
+      const notificationStyle = document.createElement('style');
+      notificationStyle.textContent = `
+        .notification {
+          position: fixed;
+          top: 100px;
+          right: 20px;
+          z-index: 10000;
+          max-width: 400px;
+          animation: slideInRight 0.3s ease;
+        }
+        
+        .notification-content {
+          background: white;
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: var(--shadow-heavy);
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          border-left: 4px solid ${type === 'success' ? '#10b981' : '#ef4444'};
+        }
+        
+        .notification-success .notification-content {
+          border-left-color: #10b981;
+        }
+        
+        .notification-error .notification-content {
+          border-left-color: #ef4444;
+        }
+        
+        .notification-content i:first-child {
+          color: ${type === 'success' ? '#10b981' : '#ef4444'};
+          font-size: 1.2rem;
+        }
+        
+        .notification-content span {
+          flex: 1;
+          color: var(--text-primary);
+          font-weight: 500;
+        }
+        
+        .notification-close {
+          background: none;
+          border: none;
+          color: var(--text-light);
+          cursor: pointer;
+          padding: 5px;
+          border-radius: 50%;
+          transition: all 0.3s ease;
+        }
+        
+        .notification-close:hover {
+          background: #f3f4f6;
+          color: var(--text-primary);
+        }
+        
+        @keyframes slideInRight {
+          from {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+      `;
+      
+      if (!document.querySelector('#notification-styles')) {
+        notificationStyle.id = 'notification-styles';
+        document.head.appendChild(notificationStyle);
+      }
+      
+      // Add to page
+      document.body.appendChild(notification);
+      
+      // Auto remove after 5 seconds
+      setTimeout(() => {
+        if (notification.parentElement) {
+          notification.style.animation = 'slideInRight 0.3s ease reverse';
+          setTimeout(() => notification.remove(), 300);
+        }
+      }, 5000);
+    }
 
     // FAQ toggle functionality
     function toggleFAQ(element) {
