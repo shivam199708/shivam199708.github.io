@@ -365,6 +365,132 @@
       box-shadow: var(--shadow-medium);
     }
 
+    /* Interactive Form Elements */
+    .form-group {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-group::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.5s;
+    }
+
+    .form-group:hover::before {
+      left: 100%;
+    }
+
+    .form-input:focus {
+      transform: scale(1.02);
+      box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+    }
+
+    /* Interactive Background */
+    .interactive-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .floating-element {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--primary-gradient);
+      opacity: 0.05;
+      animation: float-element 15s infinite linear;
+    }
+
+    .floating-element:nth-child(1) {
+      width: 60px;
+      height: 60px;
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .floating-element:nth-child(2) {
+      width: 80px;
+      height: 80px;
+      top: 60%;
+      right: 20%;
+      animation-delay: -5s;
+    }
+
+    .floating-element:nth-child(3) {
+      width: 40px;
+      height: 40px;
+      bottom: 30%;
+      left: 15%;
+      animation-delay: -10s;
+    }
+
+    @keyframes float-element {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-30px) rotate(180deg);
+      }
+    }
+
+    /* Custom Cursor */
+    .custom-cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: var(--primary-gradient);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s ease;
+      mix-blend-mode: difference;
+    }
+
+    .custom-cursor.hover {
+      transform: scale(2);
+      background: var(--accent-gradient);
+    }
+
+    /* Interactive Text */
+    .interactive-text {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .interactive-text:hover {
+      transform: scale(1.05);
+    }
+
+    .interactive-text::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--primary-gradient);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+      border-radius: 5px;
+    }
+
+    .interactive-text:hover::before {
+      opacity: 0.1;
+    }
+
     /* FAQ Section */
     .faq-section {
       background: white;
@@ -510,6 +636,16 @@
   </style>
 </head>
 <body>
+  <!-- Custom Cursor -->
+  <div class="custom-cursor"></div>
+
+  <!-- Interactive Background -->
+  <div class="interactive-bg">
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+  </div>
+
   <!-- Navigation -->
   <nav>
     <ul>
@@ -523,8 +659,8 @@
 
   <!-- Contact Hero -->
   <section class="contact-hero">
-    <h1>Get In Touch</h1>
-    <p>Let's discuss your next ML project or just say hello!</p>
+    <h1 class="interactive-text">Get In Touch</h1>
+    <p class="interactive-text">Let's discuss your next ML project or just say hello!</p>
   </section>
 
   <!-- Contact Content -->
@@ -673,6 +809,33 @@
       emailjs.init('YOUR_PUBLIC_KEY');
     })();
 
+    // Custom Cursor
+    const cursor = document.querySelector('.custom-cursor');
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateCursor() {
+      cursorX += (mouseX - cursorX) * 0.1;
+      cursorY += (mouseY - cursorY) * 0.1;
+      
+      cursor.style.left = cursorX + 'px';
+      cursor.style.top = cursorY + 'px';
+      
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    // Cursor hover effects
+    document.querySelectorAll('a, button, .interactive-text, .form-input, .submit-btn').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+
     // Navbar scroll effect
     window.addEventListener('scroll', function() {
       const nav = document.querySelector('nav');
@@ -705,14 +868,11 @@
         };
         
         // Using EmailJS for direct email sending
-        // You'll need to set up EmailJS account and get your service ID
-        const serviceId = 'service_your_service_id'; // Replace with your EmailJS service ID
+        const serviceId = 'service_ehxp9no'; // Your EmailJS service ID
         const templateId = 'template_your_template_id'; // Replace with your EmailJS template ID
         const publicKey = 'your_public_key'; // Replace with your EmailJS public key
         
-        // For now, we'll simulate a successful submission
-        // In production, replace this with actual EmailJS call:
-        /*
+        // Send email directly to ashivam1997@gmail.com
         await emailjs.send(serviceId, templateId, {
           from_name: data.name,
           from_email: data.email,
@@ -720,10 +880,6 @@
           message: data.message,
           to_email: 'ashivam1997@gmail.com'
         }, publicKey);
-        */
-        
-        // Simulate API call delay
-        await new Promise(resolve => setTimeout(resolve, 2000));
         
         // Show success message
         showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');

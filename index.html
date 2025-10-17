@@ -552,9 +552,255 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* Interactive 3D Elements */
+    .project, .skill-category {
+      transform-style: preserve-3d;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .project:hover, .skill-category:hover {
+      transform: translateY(-15px) rotateX(5deg) rotateY(5deg) scale(1.02);
+      box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    /* Custom Cursor */
+    .custom-cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: var(--primary-gradient);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s ease;
+      mix-blend-mode: difference;
+    }
+
+    .custom-cursor.hover {
+      transform: scale(2);
+      background: var(--accent-gradient);
+    }
+
+    /* Interactive Background */
+    .interactive-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .floating-shape {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--accent-gradient);
+      opacity: 0.1;
+      animation: float-shape 20s infinite linear;
+    }
+
+    .floating-shape:nth-child(1) {
+      width: 80px;
+      height: 80px;
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .floating-shape:nth-child(2) {
+      width: 120px;
+      height: 120px;
+      top: 60%;
+      right: 15%;
+      animation-delay: -5s;
+    }
+
+    .floating-shape:nth-child(3) {
+      width: 60px;
+      height: 60px;
+      bottom: 30%;
+      left: 20%;
+      animation-delay: -10s;
+    }
+
+    .floating-shape:nth-child(4) {
+      width: 100px;
+      height: 100px;
+      top: 40%;
+      right: 30%;
+      animation-delay: -15s;
+    }
+
+    @keyframes float-shape {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      25% {
+        transform: translateY(-20px) rotate(90deg);
+      }
+      50% {
+        transform: translateY(-40px) rotate(180deg);
+      }
+      75% {
+        transform: translateY(-20px) rotate(270deg);
+      }
+    }
+
+    /* Interactive Text Effects */
+    .interactive-text {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .interactive-text::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--primary-gradient);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+      border-radius: 5px;
+    }
+
+    .interactive-text:hover::before {
+      opacity: 0.1;
+    }
+
+    /* Magnetic Button Effect */
+    .magnetic-btn {
+      position: relative;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .magnetic-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* Glitch Effect */
+    .glitch {
+      position: relative;
+      animation: glitch 2s infinite;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .glitch::before {
+      animation: glitch-1 0.5s infinite;
+      color: #ff0000;
+      z-index: -1;
+    }
+
+    .glitch::after {
+      animation: glitch-2 0.5s infinite;
+      color: #00ff00;
+      z-index: -2;
+    }
+
+    @keyframes glitch {
+      0%, 100% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+    }
+
+    @keyframes glitch-1 {
+      0%, 100% { transform: translate(0); }
+      20% { transform: translate(2px, -2px); }
+      40% { transform: translate(-2px, 2px); }
+      60% { transform: translate(-2px, -2px); }
+      80% { transform: translate(2px, 2px); }
+    }
+
+    @keyframes glitch-2 {
+      0%, 100% { transform: translate(0); }
+      20% { transform: translate(-2px, -2px); }
+      40% { transform: translate(2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(-2px, 2px); }
+    }
+
+    /* Interactive Cards */
+    .interactive-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .interactive-card::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      transition: all 0.6s ease;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+
+    .interactive-card:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    /* Sound Wave Animation */
+    .sound-wave {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 20px;
+    }
+
+    .sound-bar {
+      width: 3px;
+      background: var(--primary-gradient);
+      border-radius: 2px;
+      animation: sound-wave 1.5s infinite ease-in-out;
+    }
+
+    .sound-bar:nth-child(1) { animation-delay: 0s; }
+    .sound-bar:nth-child(2) { animation-delay: 0.1s; }
+    .sound-bar:nth-child(3) { animation-delay: 0.2s; }
+    .sound-bar:nth-child(4) { animation-delay: 0.3s; }
+    .sound-bar:nth-child(5) { animation-delay: 0.4s; }
+
+    @keyframes sound-wave {
+      0%, 100% { height: 5px; }
+      50% { height: 20px; }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor"></div>
+
+  <!-- Interactive Background -->
+  <div class="interactive-bg">
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+    <div class="floating-shape"></div>
+  </div>
 
   <!-- Theme Toggle Button -->
   <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
@@ -579,10 +825,10 @@
         <img src="images/shivam.jpg" alt="Shivam Tiwari">
       </div>
       <div class="hero-right">
-        <h1>Shivam Tiwari</h1>
-        <p class="subtitle">Machine Learning Engineer & Cloud Solutions Architect</p>
-        <p class="description">Passionate about transforming complex data into actionable insights through AI/ML solutions. Specializing in GCP, Python, SQL, and end-to-end AI deployment.</p>
-        <a href="ML_Github_Website.pdf" target="_blank" class="resume-button">
+        <h1 class="interactive-text glitch" data-text="Shivam Tiwari">Shivam Tiwari</h1>
+        <p class="subtitle interactive-text">Machine Learning Engineer & Cloud Solutions Architect</p>
+        <p class="description interactive-text">Passionate about transforming complex data into actionable insights through AI/ML solutions. Specializing in GCP, Python, SQL, and end-to-end AI deployment.</p>
+        <a href="ML_Github_Website.pdf" target="_blank" class="resume-button magnetic-btn">
           <i class="fas fa-download"></i> Download Resume
         </a>
         <div class="social-links">
@@ -605,17 +851,38 @@
   <section id="projects">
     <h2>Projects</h2>
     <div class="projects">
-      <div class="project">
-        <h3><a href="https://github.com/shivam199708/Chat-Agent" target="_blank">Chat Assistance for Live Agents</a></h3>
+      <div class="project interactive-card">
+        <h3><a href="https://github.com/shivam199708/Chat-Agent" target="_blank" class="interactive-text">Chat Assistance for Live Agents</a></h3>
         <p>Open-source chatbot using Sentence-BERT embeddings and semantic search. Built with Streamlit, FAISS, and GitHub Actions, deployed on Streamlit Cloud.</p>
+        <div class="sound-wave">
+          <div class="sound-bar"></div>
+          <div class="sound-bar"></div>
+          <div class="sound-bar"></div>
+          <div class="sound-bar"></div>
+          <div class="sound-bar"></div>
+        </div>
       </div>
-      <div class="project">
-        <h3><a href="https://github.com/shivam199708/Predicting-Sleep-Qaulity-using-Machine-learning-" target="_blank">Predictive Modeling for Retail</a></h3>
+      <div class="project interactive-card">
+        <h3><a href="https://github.com/shivam199708/Predicting-Sleep-Qaulity-using-Machine-learning-" target="_blank" class="interactive-text">Predictive Modeling for Retail</a></h3>
         <p>Predictive solution for demand forecasting and inventory optimization. Suggested enhancements to reduce stockouts and support revenue growth.</p>
+        <div class="sound-wave">
+          <div class="sound-bar"></div>
+          <div class="sound-bar"></div>
+          <div class="sound-bar"></div>
+          <div class="sound-bar"></div>
+          <div class="sound-bar"></div>
+        </div>
       </div>
-      <div class="project">
-        <h3><a href="https://github.com/shivam199708/churn-Prediction-GCP" target="_blank">Churn Prediction ML Model</a></h3>
+      <div class="project interactive-card">
+        <h3><a href="https://github.com/shivam199708/churn-Prediction-GCP" target="_blank" class="interactive-text">Churn Prediction ML Model</a></h3>
         <p>Identifies at-risk customers for targeted retention strategies, improving marketing efficiency and customer lifetime value.</p>
+        <div class="sound-wave">
+          <div class="sound-bar"></div>
+          <div class="sound-bar"></div>
+          <div class="sound-bar"></div>
+          <div class="sound-bar"></div>
+          <div class="sound-bar"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -928,6 +1195,190 @@
 
     // Initialize particles
     createParticles();
+
+    // Custom Cursor
+    const cursor = document.querySelector('.custom-cursor');
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateCursor() {
+      cursorX += (mouseX - cursorX) * 0.1;
+      cursorY += (mouseY - cursorY) * 0.1;
+      
+      cursor.style.left = cursorX + 'px';
+      cursor.style.top = cursorY + 'px';
+      
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    // Cursor hover effects
+    document.querySelectorAll('a, button, .interactive-text, .project, .skill-category').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+
+    // Interactive particle system
+    function createInteractiveParticles() {
+      const canvas = document.createElement('canvas');
+      canvas.style.position = 'fixed';
+      canvas.style.top = '0';
+      canvas.style.left = '0';
+      canvas.style.width = '100%';
+      canvas.style.height = '100%';
+      canvas.style.pointerEvents = 'none';
+      canvas.style.zIndex = '-1';
+      document.body.appendChild(canvas);
+
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let mouse = { x: 0, y: 0 };
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      function createParticle() {
+        return {
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+          size: Math.random() * 2 + 1,
+          opacity: Math.random() * 0.5 + 0.1
+        };
+      }
+
+      function initParticles() {
+        particles = [];
+        for (let i = 0; i < 50; i++) {
+          particles.push(createParticle());
+        }
+      }
+
+      function updateParticles() {
+        particles.forEach(particle => {
+          particle.x += particle.vx;
+          particle.y += particle.vy;
+
+          // Mouse interaction
+          const dx = mouse.x - particle.x;
+          const dy = mouse.y - particle.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 100) {
+            const force = (100 - distance) / 100;
+            particle.x -= (dx / distance) * force * 0.5;
+            particle.y -= (dy / distance) * force * 0.5;
+          }
+
+          // Boundary check
+          if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+          if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+        });
+      }
+
+      function drawParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        particles.forEach(particle => {
+          ctx.beginPath();
+          ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(102, 126, 234, ${particle.opacity})`;
+          ctx.fill();
+        });
+
+        // Draw connections
+        particles.forEach((particle, i) => {
+          particles.slice(i + 1).forEach(otherParticle => {
+            const dx = particle.x - otherParticle.x;
+            const dy = particle.y - otherParticle.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 100) {
+              ctx.beginPath();
+              ctx.moveTo(particle.x, particle.y);
+              ctx.lineTo(otherParticle.x, otherParticle.y);
+              ctx.strokeStyle = `rgba(102, 126, 234, ${0.1 - distance / 1000})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          });
+        });
+      }
+
+      function animate() {
+        updateParticles();
+        drawParticles();
+        requestAnimationFrame(animate);
+      }
+
+      document.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      });
+
+      resizeCanvas();
+      initParticles();
+      animate();
+
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        initParticles();
+      });
+    }
+
+    // Initialize interactive particles
+    createInteractiveParticles();
+
+    // Magnetic button effect
+    document.querySelectorAll('.magnetic-btn').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        btn.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px) scale(1.05)`;
+      });
+
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0, 0) scale(1)';
+      });
+    });
+
+    // Glitch effect trigger
+    document.querySelectorAll('.glitch').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        el.style.animation = 'glitch 0.3s infinite';
+      });
+      
+      el.addEventListener('mouseleave', () => {
+        el.style.animation = 'glitch 2s infinite';
+      });
+    });
+
+    // Sound wave animation on hover
+    document.querySelectorAll('.interactive-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        const soundWave = card.querySelector('.sound-wave');
+        if (soundWave) {
+          soundWave.style.animationPlayState = 'running';
+        }
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        const soundWave = card.querySelector('.sound-wave');
+        if (soundWave) {
+          soundWave.style.animationPlayState = 'paused';
+        }
+      });
+    });
 
     // Add CSS for ripple effect
     const style = document.createElement('style');
