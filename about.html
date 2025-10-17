@@ -250,10 +250,97 @@
       background-clip: text;
     }
 
+    .skills-subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      font-style: italic;
+    }
+
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 25px;
+    }
+
+    .skill-item {
+      background: #f8fafc;
+      padding: 25px;
+      border-radius: 15px;
+      transition: all 0.3s ease;
+      border: 1px solid #e2e8f0;
+    }
+
+    .skill-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-medium);
+      border-color: #667eea;
+    }
+
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .skill-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--text-primary);
+    }
+
+    .skill-percentage {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #667eea;
+      background: rgba(102, 126, 234, 0.1);
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+
+    .skill-bar {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .skill-progress {
+      height: 100%;
+      background: var(--primary-gradient);
+      border-radius: 10px;
+      width: 0%;
+      transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .skill-progress::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .skill-item:hover .skill-progress {
+      animation: pulse 0.6s ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(1.2); }
     }
 
     .skill-category {
@@ -357,6 +444,30 @@
       padding: 25px;
       border-radius: 15px;
       border-left: 4px solid #667eea;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timeline-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.05), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .timeline-content:hover {
+      transform: translateX(10px);
+      box-shadow: var(--shadow-medium);
+      border-left-color: #764ba2;
+    }
+
+    .timeline-content:hover::before {
+      left: 100%;
     }
 
     .timeline-content h3 {
@@ -364,17 +475,32 @@
       font-weight: 600;
       margin-bottom: 10px;
       color: var(--text-primary);
+      transition: color 0.3s ease;
+    }
+
+    .timeline-content:hover h3 {
+      color: #667eea;
     }
 
     .timeline-content .timeline-date {
       color: var(--text-light);
       font-size: 0.9rem;
       margin-bottom: 15px;
+      font-weight: 500;
+      background: rgba(102, 126, 234, 0.1);
+      padding: 4px 12px;
+      border-radius: 15px;
+      display: inline-block;
     }
 
     .timeline-content p {
       color: var(--text-secondary);
       line-height: 1.6;
+      transition: color 0.3s ease;
+    }
+
+    .timeline-content:hover p {
+      color: var(--text-primary);
     }
 
     /* Personal Interests */
@@ -562,62 +688,96 @@
     <!-- Skills Section -->
     <div class="skills-section">
       <h2>Technical Expertise</h2>
+      <p class="skills-subtitle">Hover over a skill for current proficiency</p>
       <div class="skills-grid">
-        <div class="skill-category">
-          <h3><i class="fas fa-code"></i> Programming & ML</h3>
-          <div class="skill-list">
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">PyTorch</span>
-            <span class="skill-tag">Machine Learning</span>
-            <span class="skill-tag">NLP</span>
-            <span class="skill-tag">Regression</span>
-            <span class="skill-tag">Predictive Models</span>
-            <span class="skill-tag">Feature Engineering</span>
+        <div class="skill-item">
+          <div class="skill-info">
+            <span class="skill-name">Python</span>
+            <span class="skill-percentage">90%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="90%"></div>
           </div>
         </div>
-        <div class="skill-category">
-          <h3><i class="fas fa-database"></i> Data & Analytics</h3>
-          <div class="skill-list">
-            <span class="skill-tag">SQL</span>
-            <span class="skill-tag">BigQuery</span>
-            <span class="skill-tag">Pandas</span>
-            <span class="skill-tag">Excel</span>
-            <span class="skill-tag">Statistics</span>
-            <span class="skill-tag">Mathematics</span>
-            <span class="skill-tag">Data Modeling</span>
-            <span class="skill-tag">Data Analytics</span>
+        <div class="skill-item">
+          <div class="skill-info">
+            <span class="skill-name">Machine Learning</span>
+            <span class="skill-percentage">85%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="85%"></div>
           </div>
         </div>
-        <div class="skill-category">
-          <h3><i class="fas fa-chart-bar"></i> Visualization & BI</h3>
-          <div class="skill-list">
-            <span class="skill-tag">Power BI</span>
-            <span class="skill-tag">Tableau</span>
-            <span class="skill-tag">Matplotlib</span>
-            <span class="skill-tag">Seaborn</span>
-            <span class="skill-tag">Plotly</span>
+        <div class="skill-item">
+          <div class="skill-info">
+            <span class="skill-name">SQL</span>
+            <span class="skill-percentage">80%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="80%"></div>
           </div>
         </div>
-        <div class="skill-category">
-          <h3><i class="fas fa-cloud"></i> Cloud & Big Data</h3>
-          <div class="skill-list">
-            <span class="skill-tag">GCP</span>
-            <span class="skill-tag">Vertex AI</span>
-            <span class="skill-tag">Big Data</span>
-            <span class="skill-tag">MLOps</span>
-            <span class="skill-tag">Cloud Storage</span>
-            <span class="skill-tag">AutoML</span>
+        <div class="skill-item">
+          <div class="skill-info">
+            <span class="skill-name">Google Cloud Platform</span>
+            <span class="skill-percentage">75%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="75%"></div>
           </div>
         </div>
-        <div class="skill-category">
-          <h3><i class="fas fa-tools"></i> Tools & Workflow</h3>
-          <div class="skill-list">
-            <span class="skill-tag">Git & GitHub</span>
-            <span class="skill-tag">CI/CD</span>
-            <span class="skill-tag">ETL</span>
-            <span class="skill-tag">Docker</span>
-            <span class="skill-tag">Streamlit</span>
-            <span class="skill-tag">Jupyter</span>
+        <div class="skill-item">
+          <div class="skill-info">
+            <span class="skill-name">PyTorch</span>
+            <span class="skill-percentage">70%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="70%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-info">
+            <span class="skill-name">Docker</span>
+            <span class="skill-percentage">65%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="65%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-info">
+            <span class="skill-name">NLP</span>
+            <span class="skill-percentage">70%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="70%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-info">
+            <span class="skill-name">Git/GitHub</span>
+            <span class="skill-percentage">80%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="80%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-info">
+            <span class="skill-name">Statistics</span>
+            <span class="skill-percentage">75%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="75%"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-info">
+            <span class="skill-name">Streamlit</span>
+            <span class="skill-percentage">60%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-progress" data-width="60%"></div>
           </div>
         </div>
       </div>
@@ -720,13 +880,37 @@
       observer.observe(item);
     });
 
-    // Add animation to skill categories
-    document.querySelectorAll('.skill-category').forEach(category => {
-      category.style.opacity = '0';
-      category.style.transform = 'translateY(30px)';
-      category.style.transition = 'all 0.6s ease';
-      observer.observe(category);
+    // Add animation to skill items
+    document.querySelectorAll('.skill-item').forEach(item => {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(30px)';
+      item.style.transition = 'all 0.6s ease';
+      observer.observe(item);
     });
+
+    // Animate skill bars on scroll
+    function animateSkillBars() {
+      const skillBars = document.querySelectorAll('.skill-progress');
+      
+      const skillObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const progressBar = entry.target;
+            const width = progressBar.getAttribute('data-width');
+            setTimeout(() => {
+              progressBar.style.width = width;
+            }, 200);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      skillBars.forEach(bar => {
+        skillObserver.observe(bar);
+      });
+    }
+
+    // Initialize skill bar animations
+    animateSkillBars();
 
     // Add animation to interest items
     document.querySelectorAll('.interest-item').forEach(item => {
