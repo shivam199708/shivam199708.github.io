@@ -2,12 +2,15 @@
   "name": "shivam-portfolio",
   "version": "1.0.0",
   "description": "Interactive React.js Portfolio for Shivam Tiwari",
+  "homepage": "https://shivam199708.github.io/Shivam.github.io",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "node server.js"
+    "start": "node server.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -29,7 +32,8 @@
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-react": "^3.1.0",
     "vite": "^4.1.0",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "gh-pages": "^4.0.0"
   },
   "keywords": [
     "portfolio",
